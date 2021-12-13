@@ -1,7 +1,7 @@
-def BubbleSort(A):
+def BubbleSort(A): #Обычная сортировка пузыриком. От меньшего к большему
     j = len(A) - 1
     flag = True
-    while flag:
+    while flag: #Цикл на состоянии переменной
         flag = False
         for i in range(0, j):
             if A[i] > A[i + 1]:
@@ -10,17 +10,17 @@ def BubbleSort(A):
         j -= 1
  
  
-n = int(input())
-people = list(map(int, input().split()))
-taxi = list(map(int, input().split()))
-for i in range(n):
+n = int(input("Введите количество сотрудников в компании: ")) #Ввод данных пользователем
+people = list(map(int, input("Введите расстояние в километрах, используя пробел: ").split())) #Заполняем список расстояний
+taxi = list(map(int, input("Введите тарифы за проезд одного километра, используя пробел: ").split())) #Заполняем список тарифов
+for i in range(n): #Заполняем массивы
     people[i] = (people[i], i + 1)
 for i in range(n):
-    taxi[i] = (-taxi[i], i + 1)
-BubbleSort(people)
-BubbleSort(taxi)
-ans = [0] * (n + 1)
-for i in range(n):
-    ans[people[i][1]] = taxi[i][1]
-for i in range(1, n + 1):
+    taxi[i] = (-taxi[i], i + 1) #Даём отрицательные значения числам т.к. нам надо от наибольшего к наименьшему
+BubbleSort(people) #Сортируем людей по от наименьшего расстояния к наибольшему
+BubbleSort(taxi) #Сортируем цена от наибольшего к наименьшему
+ans = [0] * (n + 1) #Создаёт список из n+1 элементов
+for i in range(n): #Заполняем его
+    ans[people[i][1]] = taxi[i][1] #Соотносим наименьшее число с наибольшим
+for i in range(1, n + 1): #Выводим на экран до конечного элемета n+1
     print(ans[i], end=' ')
